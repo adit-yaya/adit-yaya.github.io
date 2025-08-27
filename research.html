@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#43a4d1',
+                        'primary-foreground': '#ffffff',
+                        background: '#ffffff',
+                        foreground: '#0f172a',
+                        muted: '#f8fafc',
+                        'muted-foreground': '#64748b',
+                        border: '#e2e8f0',
+                        accent: '#f1f5f9'
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head> 
+<body class="bg-background text-foreground font-sans">
+    
+    <header class="bg-background sticky top-0 z-10 p-4">
+        <nav class="max-w-5xl mx-auto border-b border-border flex items-center justify-between p-4">
+            <a href="index.html" class="text-xl font-bold"></a>
+            <div class="flex items-center gap-6 text-sm">
+                <a href="index.html" class="text-muted-foreground hover:text-primary transition-colors">about</a>
+                <a href="research.html" class="text-primary font-semibold">research</a>
+                <a href="projects.html" class="text-muted-foreground hover:text-primary transition-colors">projects</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-1 p-4">
+        <div class="max-w-4xl mx-auto">
+            
+            <section class="flex flex-col sm:flex-row items-center gap-10 my-8">
+                <div class="flex-1 text-center sm:text-left items-center">
+                    <h1 class="text-3xl font-bold mb-4">research</h1>
+                    <hr><br>
+                    <p class="text-lg text-muted-foreground mb-6">
+                        currently, i work with <a href='https://scholar.google.com/citations?user=iN4M6ngAAAAJ&hl=en' class="text-primary hover:underline">kailin zhuang</a> and
+                        <a href='https://scholar.google.com/citations?user=mDvGOLkAAAAJ&hl=en' class="text-primary hover:underline">kris bouchard</a> at the 
+                        <a href='https://bouchardlab.lbl.gov/' class="text-primary hover:underline">neural systems & machine learning lab</a>, part of the 
+                        <a href='https://redwood.berkeley.edu/' class="text-primary hover:underline">redwood center for theoretical neuroscience</a>
+                        and <a href='https://www.lbl.gov/' class="text-primary hover:underline">lawrence berkeley national lab</a>.
+                        <br>
+                        <br>
+                        i'm helping with quantitatively analyzing the complexity
+                        of animal vocalizations and natural sounds using information-theoretic dimensionality reduction methods developed at the lab.
+                        <br>
+                        <br>
+                        tldr, i get to look at a lot of birdsongs! 
+                    </p>
+
+                    <hr>
+                    <hr>
+                    <br>
+
+                    <p class="text-lg text-muted-foreground mb-6"> i also worked with <a href="https://modality.ai" class="text-primary hover:underline">modality.ai</a> 
+                        during my time as an intern to analyze what patients in ALS clinical trials say when self-reporting their problems with natural language processing. 
+                        <br>
+                        <br>
+                        my abstract was accepted
+                        to the <a href='https://symposium.mndassociation.org/' class="text-primary hover:underline">international symposium on ALS/MND!</a>
+                    </p>
+                </div>
+
+            
+            </section>
+        </div>
+    </main>
+    
+</body>
+</html>

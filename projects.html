@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aditya Anantaraman</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#43a4d1',
+                        'primary-foreground': '#ffffff',
+                        background: '#ffffff',
+                        foreground: '#0f172a',
+                        muted: '#f8fafc',
+                        'muted-foreground': '#64748b',
+                        border: '#e2e8f0',
+                        accent: '#f1f5f9'
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head> 
+<body class="bg-background text-foreground font-sans">
+    
+    <header class="bg-background sticky top-0 z-10 p-4">
+        <nav class="max-w-5xl mx-auto border-b border-border flex items-center justify-between p-4">
+            <a href="index.html" class="text-xl font-bold"></a>
+            <div class="flex items-center gap-6 text-sm">
+                <a href="index.html" class="text-muted-foreground hover:text-primary transition-colors">about</a>
+                <a href="research.html" class="text-muted-foreground hover:text-primary transition-colors">research</a>
+                <a href="projects.html" class="text-primary font-semibold">projects</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-1 p-4">
+        <div class="max-w-4xl mx-auto">
+            
+            <section class="flex flex-col sm:flex-row items-center gap-10 my-8">
+          
+                <div class="flex-1 text-center sm:text-left">
+                    <h1 class="text-3xl font-bold mb-4">projects</h1>
+                    <p class="text-lg text-muted-foreground mb-6">
+                        stuff i've done!
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+</body>
+</html>
