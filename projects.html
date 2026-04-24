@@ -4,156 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aditya Anantaraman</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#43a4d1',
-                        'primary-foreground': '#ffffff',
+                        primary: '#0000EE',
                         background: '#ffffff',
-                        foreground: '#0f172a',
-                        muted: '#f8fafc',
-                        'muted-foreground': '#64748b',
-                        border: '#e2e8f0',
-                        accent: '#f1f5f9'
+                        foreground: '#000000',
+                        muted: '#ffffff',
+                        'muted-foreground': '#000000',
+                        border: '#262626'
                     },
                     fontFamily: {
-                        sans: ['Helvetica', 'sans-serif']
+                        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace']
                     }
                 }
             }
         }
     </script>
-</head> 
-<body class="bg-background text-foreground font-sans">
-    
-    <header class="bg-background sticky top-0 z-10 p-4">
-        <nav class="max-w-5xl mx-auto border-b border-border flex items-center justify-between p-4">
-            <a href="index.html" class="text-xl font-bold"></a>
-            <div class="flex items-center gap-6 text-sm">
-                <a href="index.html" class="text-muted-foreground hover:text-primary transition-colors">about</a>
-                <a href="research.html" class="text-muted-foreground hover:text-primary transition-colors">research</a>
-                <a href="projects.html" class="text-primary font-semibold">projects</a>
+</head>
+<body class="bg-background text-foreground font-mono">
+    <header class="pt-3 px-2">
+        <nav class="max-w-2xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-3 text-[10px] tracking-wider uppercase">
+                <a href="index.html" class="text-primary hover:underline transition-colors">About</a>
+                <a href="research.html" class="text-primary hover:underline transition-colors">Research</a>
+                <a href="projects.html" class="font-bold text-primary">Projects</a>
+                <a href="blog.html" class="text-primary hover:underline transition-colors">Blog</a>
             </div>
         </nav>
     </header>
 
-    <main class="flex-1 p-4">
-        <div class="max-w-4xl mx-auto">
-            
-            <section class="flex flex-col sm:flex-row items-center gap-10 mt-8 mb-0">
-          
-                <div class="flex-1 text-center sm:text-left">
-                    <h1 class="text-4xl font-bold mb-4">projects</h1>
-                    <p class="text-lg text-muted-foreground mb-6">
-                        stuff i've done... 
-                    </p>
-                </div>
-            </section>
-            <hr>
-            <section class="flex flex-col sm:flex-col items-left gap-10 mt-8 mb-0">
-          
-                <div class="flex-1 text-center sm:text-left">
-                    <h1 class="text-3xl font-bold mb-4">health engine founder series podcast</h1> 
-                    <p class="text-lg text-muted-foreground mb-6">(ongoing) podcast episodes with healthtech startup founders for the health engine accelerator!</p>
-                </div>
+    <main class="px-2 pb-6 pt-3">
+        <div class="max-w-2xl mx-auto">
+            <section class="mb-4">
+                <h1 class="text-sm md:text-base uppercase tracking-wide mb-1">Projects</h1>
             </section>
 
-            <div class="flex flex-row justify-center">
-                <img src="imgs/herocket.png" alt="he rocket" class="w-48 h-48 object-cover">
-            </div>
-            <br>
-            <hr>
-
-            <section class="flex flex-col sm:flex-col items-center gap-10 mt-8 mb-0">
-          
-                <div class="flex-1 text-center sm:text-left">
-                    <h1 class="text-3xl font-bold mb-4">the office</h1> 
-                    <p class="text-lg text-muted-foreground mb-6">launchpad spring 25 project 🚀: using computer vision and llms to edit short video clips into the style of the office!</p>
-                </div>
-            </section>
-
-            <div class="flex flex-row justify-center">
-                <img src="imgs/officeteam.png" alt="the office" class="w-100 h-64 object-cover">
-            </div>
-            <br>
-            <hr>
-            <section class="flex flex-col sm:flex-col items-center gap-10 mt-8 mb-0">
-          
-                <div class="flex-1 text-center sm:text-left">
-                    <h1 class="text-3xl font-bold mb-4">qompose</h1> 
-                    <p class="text-lg text-muted-foreground mb-6">launchpad fall 24 project 🚀: 
-                        creating a new transformer architecture using quantum computing to expand maximum context window and capture all higher-order interactions in a single attention operation</p>
-                </div>
-
-                <div class="flex flex-row">
-                    <img src="imgs/qompose.png" alt="qompose logo" class="w-100 h-64 object-cover">
-                    <img src="imgs/nbody.gif" alt="nbody demo" class="w-100 h-72 px-4 object-cover">
-                </div>
-                <br>
-
-            </section>
-            
-            <hr>
-
-            <section class="flex flex-col sm:flex-col items-center gap-10 mt-8 mb-0">
-          
-                <div class="flex-1 text-center sm:text-left">
-                    <h1 class="text-3xl font-bold mb-4" >coolar</h1> 
-                    <p class="text-lg text-muted-foreground mb-6">built & patented a wearable smart collar attachment & application that protect pets' paws from extreme sidewalk heat with a $7500 grant from the MIT school of engineering & the Lemelson Foundation</p>
-                </div>
-                <div class="flex flex-row">
-                    <img src="imgs/coolar.png" alt="Coolar" class="w-100 h-72 object-cover">
-                    <img src="imgs/inventeam.png" alt="Team" class="w-100 h-72 px-4 object-cover">
-                </div>
-                <br>
-
-            </section>
-            
-            <hr>
-
-            <section class="flex flex-col sm:flex-col items-left gap-10 mt-8 mb-0">
-                <div class="flex-1 text-center sm:text-left">
-                    <h1 class="text-3xl font-bold mb-4">pitch recognition alien game</h1> 
-                    <p class="text-lg text-muted-foreground mb-6">coded a game to train absolute pitch as part of a research project with the uchicago apex lab</p>
-                </div>
-            </section>
-
-            <div class="flex flex-row justify-center">
-                <img src="imgs/aliengame.png" alt="Coolar" class="w-100 h-72 object-cover">
-            </div>
-            <br>
-            
-            <hr>
-
-            <section class="flex flex-col sm:flex-col items-center gap-10 mt-8 mb-0">
-          
-                <div class="flex-1 text-center sm:text-left">
-                    <h1 class="text-3xl font-bold mb-4">DBS modeling</h1> 
-                    <p class="text-lg text-muted-foreground mb-6">expanded on research investigating the mechanisms of deep brain stimulation by creating neuron models, assessing chaotic desynchronization of neuron networks, and finding
-                        optimal stimulus conditions</p>
-                </div>
-                <div class="flex flex-row">
-                    <img src="imgs/map.png" alt="map" class="w-100 h-72 object-cover">
-                    <img src="imgs/cobweb.png" alt="cobweb" class="w-100 h-72 px-4 object-cover">
-                </div>
-                <br>
-            </section>
-            
-            <hr>
-
-            <section class="flex flex-col sm:flex-row items-center gap-10 mt-8 mb-0">
-          
-                <div class="flex-1 text-center sm:text-left">
-                    <h1 class="text-3xl font-bold mb-4">other things im working on...</h1> 
-                    <p class="text-lg text-muted-foreground mb-6">fun AI + sound design tools, a home music player, receipt processing for housemates...</p>
-                </div>
-            </section>
-
+            <!-- Easy to edit:
+                 1) duplicate one <li> block below
+                 2) update href/title
+                 3) create matching file in /projects -->
+            <ul class="text-[11px] space-y-2.5">
+                <li>
+                    <a href="projects/health-engine-founder-series-podcast.html" class="block text-primary hover:underline transition-colors">
+                        <p class="text-primary">Founder Series Podcast</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="projects/gixxplit.html" class="block text-primary hover:underline transition-colors">
+                        <p class="text-primary">Gixxplit</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="projects/the-office.html" class="block text-primary hover:underline transition-colors">
+                        <p class="text-primary">The Office</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="projects/qompose.html" class="block text-primary hover:underline transition-colors">
+                        <p class="text-primary">Qompose</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="projects/coolar.html" class="block text-primary hover:underline transition-colors">
+                        <p class="text-primary">Coolar</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="projects/microbots.html" class="block text-primary hover:underline transition-colors">
+                        <p class="text-primary">Microbots</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="projects/pitch-recognition-alien-game.html" class="block text-primary hover:underline transition-colors">
+                        <p class="text-primary">Pitch Recognition Alien Game</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="projects/dbs-modeling.html" class="block text-primary hover:underline transition-colors">
+                        <p class="text-primary">DBS Modeling</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="projects/61c-risc-v.html" class="block text-primary hover:underline transition-colors">
+                        <p class="text-primary">Logisim RISC-V Processor</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="projects/scheme.html" class="block text-primary hover:underline transition-colors">
+                        <p class="text-primary">Scheme Interpreter</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="projects/byow.html" class="block text-primary hover:underline transition-colors">
+                        <p class="text-primary">Build Your Own World</p>
+                    </a>
+                </li>
+            </ul>
         </div>
     </main>
-    
 </body>
 </html>

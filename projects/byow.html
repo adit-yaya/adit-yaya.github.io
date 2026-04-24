@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Own World</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0000EE',
+                        background: '#ffffff',
+                        foreground: '#000000',
+                        muted: '#ffffff',
+                        'muted-foreground': '#000000',
+                        border: '#262626'
+                    },
+                    fontFamily: {
+                        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-foreground font-mono">
+    <header class="pt-3 px-2">
+        <nav class="max-w-2xl mx-auto flex items-center justify-between text-[10px] tracking-wider uppercase">
+            <a href="../index.html" class="text-primary hover:underline">About</a>
+            <a href="../research.html" class="text-primary hover:underline">Research</a>
+            <a href="../projects.html" class="font-bold text-primary">Projects</a>
+            <a href="../blog.html" class="text-primary hover:underline">Blog</a>
+        </nav>
+    </header>
+
+    <main class="px-2 pb-6 pt-3">
+        <article class="max-w-2xl mx-auto">
+            <a href="../projects.html" class="inline-block text-[10px] uppercase tracking-wider underline underline-offset-2 mb-3 text-primary">Back to Projects</a>
+
+            <h1 class="text-sm md:text-base mb-1">Build Your Own World</h1>
+            <p class="text-[11px] text-muted-foreground leading-5 mb-4">
+                A 2D game in Java with stochastic room and hallway generation, ray-casting driven FOV options, and many clams for your scuba diving adventures.
+            </p>
+        
+            <i class="text-[10px] text-muted-foreground leading-5 mb-4">Built with Krishi Jaladi for CS61B at UC Berkeley.</i> 
+            </article>
+    </main>
+</body>
+</html>
