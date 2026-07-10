@@ -53,7 +53,7 @@ function drawWaveform(canvas, points, currentOffset, active, shouldLoop = true) 
       }
     }
     
-    const barHeight = amplitude * height * 0.8;
+    const barHeight = amplitude * height * 0.7;
     
     const style = getComputedStyle(document.body);
     const playedColor = style.getPropertyValue('--accent-gold').trim() || '#c5a059';

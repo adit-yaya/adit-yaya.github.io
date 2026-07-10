@@ -14,7 +14,19 @@
       <p class="site-subtitle">likes funny sounds</p>
     </div>
     <div class="site-subtitle">
-      HIT PLAY :)
+      <div class="tooltip-container">
+        <span class="tooltip-trigger">hit play ◡̈</span>
+        <div class="tooltip-content">
+          <div class="tooltip-arrow"></div>
+          <p><strong>how to:</strong></p>
+          <ul style="margin-left: 14px; margin-top: 8px; list-style-type: disc;">
+            <li style="margin-bottom: 6px;">press play to start!</li>
+            <li style="margin-bottom: 6px;">drag vertical fader to change volume</li>
+            <li style="margin-bottom: 6px;">choose a track with the switch (bottom) and hit "SELECT" to load your own mp3s.</li>
+            <li style="margin-bottom: 0;">empty a track with "CLEAR" (top right, while playing)</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -72,7 +84,7 @@
         </div>
       </article>
       <div class="vertical-fader-container">
-        <input type="range" min="0" max="1" step="0.01" value="0.05" class="volume-slider vertical" oninput="setTrackVolume(1, this.value)" title="Volume">
+        <input type="range" min="0" max="1" step="0.0001" value="0.05" class="volume-slider vertical" oninput="setTrackVolume(1, this.value)" title="Volume">
         <span class="volume-label" id="volume-label-1" style="color: var(--accent-gold);">5.00</span>
       </div>
     </div>
@@ -115,8 +127,8 @@
         </div>
       </article>
       <div class="vertical-fader-container">
-        <input type="range" min="0" max="1" step="0.01" value="0.8" class="volume-slider vertical" oninput="setTrackVolume(2, this.value)" title="Volume">
-        <span class="volume-label" id="volume-label-2" style="color: var(--accent-gold);">8.00</span>
+        <input type="range" min="0" max="1" step="0.0001" value="0.8" class="volume-slider vertical" oninput="setTrackVolume(2, this.value)" title="Volume">
+        <span class="volume-label" id="volume-label-2" style="color: var(--accent-gold);">80.00</span>
       </div>
     </div>
 
