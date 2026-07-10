@@ -215,6 +215,7 @@ async function loadDefaultAudioFile(trackNum, fileUrl) {
       const audio = trackNum === 1 ? track1Audio : track2Audio;
       audio.src = fileUrl;
       audio.load();
+      updateClearButtonState(trackNum);
       
       const points = trackNum === 1 ? wavePoints1 : wavePoints2;
       points.length = 0;
@@ -293,6 +294,21 @@ window.addEventListener('DOMContentLoaded', () => {
   
   loadDefaultAudioFile(1, 'track1.mp3');
   animate();
+  
+  const tooltipContainer = document.querySelector('.tooltip-container');
+  const tooltipTrigger = document.querySelector('.tooltip-trigger');
+  if (tooltipTrigger && tooltipContainer) {
+    tooltipTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      tooltipContainer.classList.toggle('active');
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!tooltipContainer.contains(e.target)) {
+        tooltipContainer.classList.remove('active');
+      }
+    });
+  }
   
   setTimeout(() => {
     const hash = window.location.hash;
@@ -377,6 +393,7 @@ function handleTrackUpload(input) {
         const oldPlaying = isPlaying1;
         if (oldPlaying) track1Audio.pause();
         track1Audio.src = URL.createObjectURL(file);
+        updateClearButtonState(1);
         if (oldPlaying) track1Audio.play().catch(err => console.log(err));
         
         // metadata
@@ -394,6 +411,7 @@ function handleTrackUpload(input) {
         const oldPlaying = isPlaying2;
         if (oldPlaying) track2Audio.pause();
         track2Audio.src = URL.createObjectURL(file);
+        updateClearButtonState(2);
         if (oldPlaying) track2Audio.play().catch(err => console.log(err));
         
         const card = document.getElementById('card-2');
@@ -477,6 +495,7 @@ function stopTrackAudio(trackNum, event) {
       metaValues[2].textContent = "???";
     }
   }
+  updateClearButtonState(trackNum);
 }
 
 // volume fader!
@@ -497,6 +516,15 @@ function setTrackVolume(trackNum, val) {
     } else {
       label.style.color = 'var(--text-muted)';
     }
+  }
+}
+
+function updateClearButtonState(trackNum) {
+  const audio = trackNum === 1 ? track1Audio : track2Audio;
+  const hasAudio = audio.src && !audio.src.endsWith('/') && audio.src !== '';
+  const btn = document.querySelector(`#track-row-${trackNum} .btn-clear-track`);
+  if (btn) {
+    btn.disabled = !hasAudio;
   }
 }
 

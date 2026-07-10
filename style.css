@@ -116,7 +116,8 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.tooltip-container:hover .tooltip-content {
+.tooltip-container:hover .tooltip-content,
+.tooltip-container.active .tooltip-content {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
@@ -516,9 +517,21 @@ body {
   border-color: var(--accent-gold);
 }
 
+.btn-clear-track:disabled {
+  pointer-events: none !important;
+  cursor: default;
+}
+
 .track-info-card.active ~ .waveform-container .btn-clear-track {
   opacity: 1;
   pointer-events: auto;
+}
+
+.track-info-card.active ~ .waveform-container .btn-clear-track:disabled {
+  opacity: 0.35 !important;
+  border-color: var(--text-muted);
+  color: var(--text-muted);
+  background-color: var(--bg-color);
 }
 
 .track-row-wrapper {
