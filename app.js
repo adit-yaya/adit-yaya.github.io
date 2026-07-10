@@ -106,12 +106,10 @@ function animate() {
       offset1 = (offset1 + 0.3) % waveLength; 
     }
   } else {
-    // line up with start of song
-    if (hasAudio1) {
-      const totalBarWidth = 5;
-      const playheadBarIndex = Math.floor(((canvas1 ? canvas1.clientWidth : 0) * 0.2) / totalBarWidth);
-      offset1 = -playheadBarIndex;
-    }
+    // reset offset
+    const totalBarWidth = 5;
+    const playheadBarIndex = Math.floor(((canvas1 ? canvas1.clientWidth : 0) * 0.2) / totalBarWidth);
+    offset1 = -playheadBarIndex;
   }
   
   if (isPlaying2) {
@@ -122,21 +120,19 @@ function animate() {
       const currentPointIndex = progress * waveLength;
       offset2 = currentPointIndex - playheadBarIndex;
     } else {
-      offset2 = (offset2 + 0.3) % waveLength; 
+      offset2 = (offset2 + 0.3) % waveLength; // slow
     }
   } else {
-    if (hasAudio2) {
-      const totalBarWidth = 5;
-      const playheadBarIndex = Math.floor(((canvas2 ? canvas2.clientWidth : 0) * 0.2) / totalBarWidth);
-      offset2 = -playheadBarIndex;
-    }
+    const totalBarWidth = 5;
+    const playheadBarIndex = Math.floor(((canvas2 ? canvas2.clientWidth : 0) * 0.2) / totalBarWidth);
+    offset2 = -playheadBarIndex;
   }
   
   if (canvas1) {
-    drawWaveform(canvas1, wavePoints1, offset1, isPlaying1, !hasAudio1);
+    drawWaveform(canvas1, wavePoints1, offset1, isPlaying1, isPlaying1 && !hasAudio1);
   }
   if (canvas2) {
-    drawWaveform(canvas2, wavePoints2, offset2, isPlaying2, !hasAudio2);
+    drawWaveform(canvas2, wavePoints2, offset2, isPlaying2, isPlaying2 && !hasAudio2);
   }
 }
 
@@ -238,10 +234,20 @@ async function loadDefaultAudioFile(trackNum, fileUrl) {
         points.push(Math.max(0.04, max));
       }
       
-      // go to default array ( i thinkn ipod touch i forgot tho)
+      // Update default restore array if Track 1
       if (trackNum === 1) {
         defaultWavePoints1.length = 0;
         defaultWavePoints1.push(...wavePoints1);
+      }
+      
+      // claculate and set starting offset
+      const canvas = document.getElementById(trackNum === 1 ? 'waveform-canvas-1' : 'waveform-canvas-2');
+      const totalBarWidth = 5;
+      const playheadBarIndex = Math.floor(((canvas ? canvas.clientWidth : 0) * 0.2) / totalBarWidth);
+      if (trackNum === 1) {
+        offset1 = -playheadBarIndex;
+      } else if (trackNum === 2) {
+        offset2 = -playheadBarIndex;
       }
       
       audioCtx.close();
@@ -258,6 +264,13 @@ window.addEventListener('DOMContentLoaded', () => {
   
   resizeCanvases();
   window.addEventListener('resize', resizeCanvases);
+  
+  // make sure first render is aligned
+  const canvas1 = document.getElementById('waveform-canvas-1');
+  const canvas2 = document.getElementById('waveform-canvas-2');
+  const totalBarWidth = 5;
+  offset1 = -Math.floor(((canvas1 ? canvas1.clientWidth : 0) * 0.2) / totalBarWidth);
+  offset2 = -Math.floor(((canvas2 ? canvas2.clientWidth : 0) * 0.2) / totalBarWidth);
   
   loadDefaultAudioFile(1, 'track1.mp3');
   animate();
