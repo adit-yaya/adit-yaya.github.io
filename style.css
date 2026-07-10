@@ -492,6 +492,10 @@ body {
   color: var(--accent-gold);
 }
 
+#dark-mode-toggle {
+  margin-right: 4px;
+}
+
 .btn-clear-track {
   position: absolute;
   top: 10px;
