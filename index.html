@@ -11,7 +11,7 @@
   <header class="site-header">
     <div>
       <h1 class="site-title">ADITYA ANANTARAMAN</h1>
-      <p class="site-subtitle">makes funny sounds</p>
+      <p class="site-subtitle">likes funny sounds</p>
     </div>
     <div class="site-subtitle">
       HIT PLAY :)
@@ -60,6 +60,7 @@
               </ul>
               <p> Outside of research, I work on creative machine learning projects with <a href="https://www.callaunchpad.org">Launchpad</a> and serve as a director of <a href="https://www.readysethealth.io/">Health Engine</a>, an accelerator for early-stage healthcare startups.</p>
             </div>
+            <footer class="drawer-footer">p.s. play ur own music!</footer>
           </div>
         </div>
         
@@ -71,7 +72,8 @@
         </div>
       </article>
       <div class="vertical-fader-container">
-        <input type="range" min="0" max="1" step="0.01" value="0" class="volume-slider vertical" oninput="setTrackVolume(1, this.value)" title="Volume">
+        <input type="range" min="0" max="1" step="0.01" value="0.05" class="volume-slider vertical" oninput="setTrackVolume(1, this.value)" title="Volume">
+        <span class="volume-label" id="volume-label-1" style="color: var(--accent-gold);">5.00</span>
       </div>
     </div>
     
@@ -114,6 +116,7 @@
       </article>
       <div class="vertical-fader-container">
         <input type="range" min="0" max="1" step="0.01" value="0.8" class="volume-slider vertical" oninput="setTrackVolume(2, this.value)" title="Volume">
+        <span class="volume-label" id="volume-label-2" style="color: var(--accent-gold);">8.00</span>
       </div>
     </div>
 

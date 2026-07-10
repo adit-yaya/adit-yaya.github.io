@@ -1,4 +1,3 @@
-
 // waveform data stores
 const wavePoints1 = [];
 const wavePoints2 = [];
@@ -17,7 +16,7 @@ const track1Audio = new Audio();
 const track2Audio = new Audio();
 track1Audio.loop = true;
 track2Audio.loop = true;
-track1Audio.volume = 0;
+track1Audio.volume = 0.05;
 track2Audio.volume = 0.8;
 
 // track select button
@@ -36,7 +35,7 @@ function drawWaveform(canvas, points, currentOffset, active, shouldLoop = true) 
   const barCount = Math.ceil(width / totalBarWidth);
   const midY = height / 2;
   
-  const playheadX = width * 0.2;
+  const playheadX = width * 0.5;
   
   for (let i = 0; i < barCount; i++) {
     const x = i * totalBarWidth;
@@ -54,10 +53,8 @@ function drawWaveform(canvas, points, currentOffset, active, shouldLoop = true) 
       }
     }
     
-    // waveform amplitude scaled against track box height
     const barHeight = amplitude * height * 0.8;
     
-    // left of playhead highlighted, right of playhead still greyed
     const style = getComputedStyle(document.body);
     const playedColor = style.getPropertyValue('--accent-gold').trim() || '#c5a059';
     const unplayedColor = style.getPropertyValue('--accent-gold-unplayed').trim() || '#e3d5b8';
@@ -67,10 +64,13 @@ function drawWaveform(canvas, points, currentOffset, active, shouldLoop = true) 
     if (active) {
       if (x < playheadX) {
         ctx.fillStyle = playedColor;
+        ctx.globalAlpha = 0.6;
       } else {
         ctx.fillStyle = unplayedColor;
+        ctx.globalAlpha = 1.0;
       }
     } else {
+      ctx.globalAlpha = 1.0;
       if (x < playheadX) {
         ctx.fillStyle = pausedPlayedColor;
       } else {
@@ -78,15 +78,13 @@ function drawWaveform(canvas, points, currentOffset, active, shouldLoop = true) 
       }
     }
     
-    // midbar
     ctx.fillRect(x, midY - barHeight / 2, barWidth, barHeight);
+    ctx.globalAlpha = 1.0;
   }
 }
 
 function animate() {
   requestAnimationFrame(animate);
-  
-  // size canvases for transitions
   resizeCanvases();
   
   const canvas1 = document.getElementById('waveform-canvas-1');
@@ -98,7 +96,7 @@ function animate() {
   if (isPlaying1) {
     if (hasAudio1) {
       const totalBarWidth = 5;
-      const playheadBarIndex = Math.floor(((canvas1 ? canvas1.clientWidth : 0) * 0.2) / totalBarWidth);
+      const playheadBarIndex = Math.floor(((canvas1 ? canvas1.clientWidth : 0) * 0.5) / totalBarWidth);
       const progress = track1Audio.currentTime / track1Audio.duration;
       const currentPointIndex = progress * waveLength;
       offset1 = currentPointIndex - playheadBarIndex;
@@ -106,16 +104,15 @@ function animate() {
       offset1 = (offset1 + 0.3) % waveLength; 
     }
   } else {
-    // reset offset
     const totalBarWidth = 5;
-    const playheadBarIndex = Math.floor(((canvas1 ? canvas1.clientWidth : 0) * 0.2) / totalBarWidth);
+    const playheadBarIndex = Math.floor(((canvas1 ? canvas1.clientWidth : 0) * 0.5) / totalBarWidth);
     offset1 = -playheadBarIndex;
   }
   
   if (isPlaying2) {
     if (hasAudio2) {
       const totalBarWidth = 5;
-      const playheadBarIndex = Math.floor(((canvas2 ? canvas2.clientWidth : 0) * 0.2) / totalBarWidth);
+      const playheadBarIndex = Math.floor(((canvas2 ? canvas2.clientWidth : 0) * 0.5) / totalBarWidth);
       const progress = track2Audio.currentTime / track2Audio.duration;
       const currentPointIndex = progress * waveLength;
       offset2 = currentPointIndex - playheadBarIndex;
@@ -124,7 +121,7 @@ function animate() {
     }
   } else {
     const totalBarWidth = 5;
-    const playheadBarIndex = Math.floor(((canvas2 ? canvas2.clientWidth : 0) * 0.2) / totalBarWidth);
+    const playheadBarIndex = Math.floor(((canvas2 ? canvas2.clientWidth : 0) * 0.5) / totalBarWidth);
     offset2 = -playheadBarIndex;
   }
   
@@ -234,16 +231,14 @@ async function loadDefaultAudioFile(trackNum, fileUrl) {
         points.push(Math.max(0.04, max));
       }
       
-      // Update default restore array if Track 1
       if (trackNum === 1) {
         defaultWavePoints1.length = 0;
         defaultWavePoints1.push(...wavePoints1);
       }
       
-      // claculate and set starting offset
       const canvas = document.getElementById(trackNum === 1 ? 'waveform-canvas-1' : 'waveform-canvas-2');
       const totalBarWidth = 5;
-      const playheadBarIndex = Math.floor(((canvas ? canvas.clientWidth : 0) * 0.2) / totalBarWidth);
+      const playheadBarIndex = Math.floor(((canvas ? canvas.clientWidth : 0) * 0.5) / totalBarWidth);
       if (trackNum === 1) {
         offset1 = -playheadBarIndex;
       } else if (trackNum === 2) {
@@ -257,7 +252,21 @@ async function loadDefaultAudioFile(trackNum, fileUrl) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  // no wavform on track2 by default
+  // auto setup theme based on system preference
+  const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  const isDarkDefault = !prefersLight;
+  
+  if (isDarkDefault) {
+    document.body.classList.add('dark-mode');
+    const toggleBtn = document.getElementById('dark-mode-toggle');
+    if (toggleBtn) toggleBtn.textContent = '☾';
+  } else {
+    document.body.classList.remove('dark-mode');
+    const toggleBtn = document.getElementById('dark-mode-toggle');
+    if (toggleBtn) toggleBtn.textContent = '☀';
+  }
+
+  // track 2 empty by default
   for (let i = 0; i < waveLength; i++) {
     wavePoints2.push(0.04);
   }
@@ -265,12 +274,11 @@ window.addEventListener('DOMContentLoaded', () => {
   resizeCanvases();
   window.addEventListener('resize', resizeCanvases);
   
-  // make sure first render is aligned
   const canvas1 = document.getElementById('waveform-canvas-1');
   const canvas2 = document.getElementById('waveform-canvas-2');
   const totalBarWidth = 5;
-  offset1 = -Math.floor(((canvas1 ? canvas1.clientWidth : 0) * 0.2) / totalBarWidth);
-  offset2 = -Math.floor(((canvas2 ? canvas2.clientWidth : 0) * 0.2) / totalBarWidth);
+  offset1 = -Math.floor(((canvas1 ? canvas1.clientWidth : 0) * 0.5) / totalBarWidth);
+  offset2 = -Math.floor(((canvas2 ? canvas2.clientWidth : 0) * 0.5) / totalBarWidth);
   
   loadDefaultAudioFile(1, 'track1.mp3');
   animate();
@@ -464,8 +472,18 @@ function setTrackVolume(trackNum, val) {
   } else if (trackNum === 2) {
     track2Audio.volume = volume;
   }
+  
+  const label = document.getElementById(`volume-label-${trackNum}`);
+  if (label) {
+    const volNum = volume * 100;
+    label.textContent = volNum.toFixed(2);
+    if (volNum > 0) {
+      label.style.color = 'var(--accent-gold)';
+    } else {
+      label.style.color = 'var(--text-muted)';
+    }
+  }
 }
-
 
 window.toggleUploadTarget = toggleUploadTarget;
 window.triggerFileInput = triggerFileInput;
