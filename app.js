@@ -203,7 +203,7 @@ function resizeCanvases() {
   });
 }
 
-// default currently burial
+// default currently nina
 async function loadDefaultAudioFile(trackNum, fileUrl) {
   try {
     const response = await fetch(fileUrl);
@@ -221,15 +221,26 @@ async function loadDefaultAudioFile(trackNum, fileUrl) {
       
       const rawData = decodedData.getChannelData(0);
       const samplesPerBar = Math.floor(rawData.length / waveLength);
+      
+      const tempPeaks = [];
+      let maxVal = 0;
       for (let i = 0; i < waveLength; i++) {
-        let max = 0;
         const start = i * samplesPerBar;
+        let sum = 0;
         for (let j = 0; j < samplesPerBar; j++) {
-          const val = Math.abs(rawData[start + j]);
-          if (val > max) max = val;
+          sum += Math.abs(rawData[start + j]);
         }
-        points.push(Math.max(0.04, max));
+        const val = sum / samplesPerBar;
+        tempPeaks.push(val);
+        if (val > maxVal) maxVal = val;
       }
+      
+      const normalizedPeaks = tempPeaks.map(p => {
+        const norm = maxVal > 0 ? (p / maxVal) : 0;
+        return parseFloat(Math.max(0.04, norm * 0.85).toFixed(4));
+      });
+      
+      points.push(...normalizedPeaks);
       
       if (trackNum === 1) {
         defaultWavePoints1.length = 0;
@@ -372,7 +383,8 @@ function handleTrackUpload(input) {
         const card = document.getElementById('card-1');
         const metaValues = card.querySelectorAll('.track-meta-value');
         if (metaValues.length > 0) {
-          metaValues[0].textContent = "CUSTOM";
+          metaValues[0].textContent = "???";
+          metaValues[1].textContent = "???";
           metaValues[2].textContent = file.name.substring(0, 10).toUpperCase();
         }
       } else {
@@ -387,7 +399,8 @@ function handleTrackUpload(input) {
         const card = document.getElementById('card-2');
         const metaValues = card.querySelectorAll('.track-meta-value');
         if (metaValues.length > 0) {
-          metaValues[0].textContent = "CUSTOM";
+          metaValues[0].textContent = "???";
+          metaValues[1].textContent = "???";
           metaValues[2].textContent = file.name.substring(0, 10).toUpperCase();
         }
       }
@@ -440,7 +453,8 @@ function stopTrackAudio(trackNum, event) {
     const card = document.getElementById('card-1');
     const metaValues = card ? card.querySelectorAll('.track-meta-value') : [];
     if (metaValues.length > 0) {
-      metaValues[0].textContent = "A♭m";
+      metaValues[0].textContent = "???";
+      metaValues[1].textContent = "???";
       metaValues[2].textContent = "HUMAN";
     }
   } else if (trackNum === 2) {
@@ -458,7 +472,8 @@ function stopTrackAudio(trackNum, event) {
     const card = document.getElementById('card-2');
     const metaValues = card ? card.querySelectorAll('.track-meta-value') : [];
     if (metaValues.length > 0) {
-      metaValues[0].textContent = "Bm";
+      metaValues[0].textContent = "???";
+      metaValues[1].textContent = "???";
       metaValues[2].textContent = "???";
     }
   }
