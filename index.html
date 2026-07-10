@@ -1,76 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditya Anantaraman</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#0000EE',
-                        background: '#ffffff',
-                        foreground: '#000000',
-                        muted: '#ffffff',
-                        'muted-foreground': '#000000',
-                        border: '#262626'
-                    },
-                    fontFamily: {
-                        mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
-                        name: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace']
-                    }
-                }
-            }
-        }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aditya Anantaraman</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-background text-foreground font-mono">
-    <header class="pt-3 px-2">
-        <nav class="max-w-2xl mx-auto flex items-center justify-end">
-            <div class="flex items-center gap-3 text-[10px] tracking-wider uppercase">
-                <a href="index.html" class="font-bold text-primary">About</a>
-                <a href="research.html" class="text-primary hover:underline transition-colors">Research</a>
-                <a href="projects.html" class="text-primary hover:underline transition-colors">Projects</a>
-                <a href="blog.html" class="text-primary hover:underline transition-colors">Blog</a>
+<body>
+
+  <header class="site-header">
+    <div>
+      <h1 class="site-title">ADITYA ANANTARAMAN</h1>
+      <p class="site-subtitle">makes funny sounds</p>
+    </div>
+    <div class="site-subtitle">
+      HIT PLAY :)
+    </div>
+  </header>
+
+  
+  <main class="track-stack">
+    
+    <!-- track 1 bio and info and work -->
+    <div class="track-row-wrapper">
+      <article id="track-row-1" class="track-row">
+        <!-- sidepanel -->
+        <button class="track-info-card" id="card-1" onclick="toggleTrack(1, true)" aria-expanded="false" aria-controls="drawer-1">
+          <div>
+            <span class="track-number">TRACK 01</span>
+            <h2 class="track-title">BIO / WORK</h2>
+            <div class="track-meta-grid">
+              <span class="track-meta-label">KEY</span>
+              <span class="track-meta-value">A♭m</span>
+              <span class="track-meta-label">BPM</span>
+              <span class="track-meta-value">140.00</span>
+              <span class="track-meta-label">TYPE</span>
+              <span class="track-meta-value">HUMAN</span>
             </div>
-        </nav>
-    </header>
-
-    <main class="px-2 pb-6 pt-3">
-        <div class="max-w-2xl mx-auto">
-            <section class="space-y-4">
-                <div>
-                    <h1 class="font-name text-base md:text-xl uppercase tracking-wide leading-tight">
-                        <span class="block">Aditya Anantaraman</span>
-                    </h1>
-                </div>
-
-                <p class="text-[11px] leading-5 text-muted-foreground">
-                    I'm Adit, an undergraduate at UC Berkeley studying Electrical Engineering and Computer Science.
-                </p>
-
-                <p class="text-[11px] leading-5 text-muted-foreground">
-                    I'm interested in building efficient models of sensory processing and understanding how learning mechanisms leverage the inherent structure in natural data. I contribute to auditory neuroscience and machine learning research at the <a href="https://bouchardlab.lbl.gov/" class="underline underline-offset-2 text-primary">Neural Systems & Machine Learning Lab</a>, part of the Redwood Center for Theoretical Neuroscience and Lawrence Berkeley National Laboratory.
-                </p>
-
-                <p class="text-[11px] leading-5 text-muted-foreground">
-                    I also work on creative machine learning projects with <a href="https://www.callaunchpad.org/" class="underline underline-offset-2 text-primary">Launchpad</a> and I'm a director of <a href="https://readysethealth.io/" class="underline underline-offset-2 text-primary">Health Engine</a>, an accelerator for early-stage healthcare startups.
-                </p>
-
-                <section class="pt-2 text-[11px]">
-                    <div class="flex items-center gap-3 text-muted-foreground">
-                        <a href="mailto:aditya.anant@berkeley.edu" class="underline underline-offset-2 text-primary">[mail]</a>
-                        <a href="https://www.linkedin.com/in/adit-anant/" class="underline underline-offset-2 text-primary">[in]</a>
-                        <a href="https://github.com/adit-yaya" class="underline underline-offset-2 text-primary">[gh]</a>
-                    </div>
-                </section>
-            </section>
+          </div>
+          <div class="track-trigger-status">
+            <span class="status-dot"></span>
+            <span id="status-text-1">PLAY</span>
+          </div>
+        </button>
+        
+        <!-- inner content -->
+        <div class="track-content-drawer" id="drawer-1">
+          <div class="drawer-inner">
+            <header class="drawer-header">Hi, I'm Adit!</header>
+            <div class="drawer-body">
+              <p>I'm an undergraduate studying EECS at UC Berkeley.</p>
+              <p>I really like birds. and music. (perhaps you could tell).</p>
+              <p>Dogs are also cool. and chocolate, good TV, and Spider-Man.</p>
+              <p><strong>Work:</strong></p>
+              <p>Currently, I'm thinking a lot about audio/visual perception and intelligence. Somewhere in the middle of signal processing, neuroscience, and machine learning. 
+              <ul>
+                <li>I'm spending a summer at École Polytechnique researching inference-time optimization and distillation for text-to-image models with Prof. Xi Wang. 
+                <li>I also research vocalization complexity using information theoretic methods with Dr. Kris Bouchard at LBNL / Redwood Center.
+              </ul>
+              <p> Outside of research, I work on creative machine learning projects with <a href="https://www.callaunchpad.org">Launchpad</a> and serve as a director of <a href="https://www.readysethealth.io/">Health Engine</a>, an accelerator for early-stage healthcare startups.</p>
+            </div>
+          </div>
         </div>
-    </main>
+        
+        <!-- waveform panel -->
+        <div class="waveform-container">
+          <button class="btn-clear-track" onclick="stopTrackAudio(1, event)" title="Stop track audio">CLEAR</button>
+          <div class="playhead-line" aria-hidden="true"></div>
+          <canvas id="waveform-canvas-1" class="waveform-canvas" aria-label="Acoustic Waveform for Track 1"></canvas>
+        </div>
+      </article>
+      <div class="vertical-fader-container">
+        <input type="range" min="0" max="1" step="0.01" value="0" class="volume-slider vertical" oninput="setTrackVolume(1, this.value)" title="Volume">
+      </div>
+    </div>
+    
+    <!-- track 2 notes (obsidian link eventually - quartz5) -->
+    <div class="track-row-wrapper">
+      <article id="track-row-2" class="track-row">
+        <button class="track-info-card" id="card-2" onclick="toggleTrack(2, true)" aria-expanded="false" aria-controls="drawer-2">
+          <div>
+            <span class="track-number">TRACK 02</span>
+            <h2 class="track-title">NOTES / THOUGHTS</h2>
+            <div class="track-meta-grid">
+              <span class="track-meta-label">KEY</span>
+              <span class="track-meta-value">Bm</span>
+              <span class="track-meta-label">BPM</span>
+              <span class="track-meta-value">078.00</span>
+              <span class="track-meta-label">TYPE</span>
+              <span class="track-meta-value">???</span>
+            </div>
+          </div>
+          <div class="track-trigger-status">
+            <span class="status-dot"></span>
+            <span id="status-text-2">PLAY</span>
+          </div>
+        </button>
+        
+        <div class="track-content-drawer" id="drawer-2">
+          <div class="drawer-inner">
+            <header class="drawer-header">NOTES</header>
+            <div class="drawer-body">
+              <p>Trying to document the things I learn... coming soon!</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="waveform-container">
+          <button class="btn-clear-track" onclick="stopTrackAudio(2, event)" title="Stop track audio">CLEAR</button>
+          <div class="playhead-line" aria-hidden="true"></div>
+          <canvas id="waveform-canvas-2" class="waveform-canvas" aria-label="Static Waveform for Track 2"></canvas>
+        </div>
+      </article>
+      <div class="vertical-fader-container">
+        <input type="range" min="0" max="1" step="0.01" value="0.8" class="volume-slider vertical" oninput="setTrackVolume(2, this.value)" title="Volume">
+      </div>
+    </div>
+
+    <!-- upload tracks -->
+    <div class="upload-centered-container">
+      
+      <!-- select -->
+      <div class="upload-small-box clickable" onclick="triggerFileInput()" title="Select audio track">
+        <button class="btn-upload-action">SELECT</button>
+        <input type="file" id="track-file-input" accept="audio/*" style="display: none;" onchange="handleTrackUpload(this)">
+      </div>
+
+      <!-- target track switch -->
+      <div class="upload-small-box">
+        <div class="switch-wrapper">
+          <span class="switch-text-label" id="label-target-1" style="color: var(--accent-gold); font-weight: bold;">01</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="track-toggle-switch" onchange="toggleUploadTarget(this)">
+            <span class="slider-knob"></span>
+          </label>
+          <span class="switch-text-label" id="label-target-2">02</span>
+        </div>
+      </div>
+      
+    </div>
+    
+  </main>
+
+  <!-- footer -->
+  <footer class="site-footer">
+    <div>
+      © 2026 Chirp Chirp
+    </div>
+    <div class="footer-links">
+      <button id="dark-mode-toggle" class="theme-btn" onclick="toggleDarkMode()" title="Toggle color theme">☀</button>
+      <a href="mailto:aditya.anant@berkeley.edu" class="footer-link-item">MAIL</a>
+      <a href="https://github.com/adit-yaya" target="_blank" class="footer-link-item">GITHUB</a>
+      <a href="https://www.linkedin.com/in/adit-anant/" target="_blank" class="footer-link-item">LINKEDIN</a>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
